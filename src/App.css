@@ -95,6 +95,7 @@ h3 {
 
 .restauTitle {
   width: 820px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .restauItems {
@@ -128,6 +129,7 @@ h3 {
   line-height: 21px;
   margin-bottom: 8px;
   color: #808484;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .items > img {

@@ -39,7 +39,7 @@ function App() {
             <p>{data.restaurant.description}</p>
           </div>
           <div className="right-menu">
-            <img src={data.restaurant.picture} alt="picture-restau" />
+            <img src={data.restaurant.picture} alt="restau" />
           </div>
         </section>
 

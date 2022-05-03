@@ -61,9 +61,12 @@ function App() {
                         >
                           <div className="left-items">
                             <h3>{label.title}</h3>
-                            <p className="items-description">
-                              {label.description}
-                            </p>
+                            {label.description && (
+                              <p className="items-description">
+                                {label.description}
+                              </p>
+                            )}
+
                             <p className="price">{label.price} €</p>
                           </div>
                           {label.picture && (

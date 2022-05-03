@@ -9,16 +9,19 @@ function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://m-project-deliveroo-backend.herokuapp.com/"
-    );
-    // console.log(response.data);
-    setData(response.data);
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://m-project-deliveroo-backend.herokuapp.com/"
+        );
+        // console.log(response.data);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchData();
   }, []);
 
@@ -39,20 +42,41 @@ function App() {
             <img src={data.restaurant.picture} alt="picture-restau" />
           </div>
         </section>
-        <section className="brunch">
-          <div className="left">
-            {data.categories.map((item, index) => {
-              return (
-                <div key={index}>
-                  {item.name}
 
-                  {data.meals.map((label, index) => {
-                    return <div key={index}>{label.title}</div>;
-                  })}
+        <section className="center">
+          {data.categories.map((items, index) => {
+            return (
+              items.meals.length > 0 && (
+                <div className="restauTitle">
+                  <h2 key={index}> {items.name}</h2>
+                  <div className="restauItems">
+                    {items.meals.map((label, index) => {
+                      return (
+                        <div
+                          // onClick={() => {
+                          //   addToCart(label);
+                          // }}
+                          key={index}
+                          className="items"
+                        >
+                          <div className="left-items">
+                            <h3>{label.title}</h3>
+                            <p className="items-description">
+                              {label.description}
+                            </p>
+                            <p className="price">{label.price} €</p>
+                          </div>
+                          {label.picture && (
+                            <img src={label.picture} alt="fgdjgd" />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+              )
+            );
+          })}
         </section>
       </div>
     </>
